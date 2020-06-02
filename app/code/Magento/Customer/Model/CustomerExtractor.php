@@ -98,8 +98,10 @@ class CustomerExtractor
         $storeId = $store->getId();
         
         if ($isGroupIdEmpty) {
+            $groupId = isset($customerData['group_id']) ? $customerData['group_id']
+                : $this->customerGroupManagement->getDefaultGroup($storeId)->getId();
             $customerDataObject->setGroupId(
-                $this->customerGroupManagement->getDefaultGroup($storeId)->getId()
+                $groupId
             );
         }
 
